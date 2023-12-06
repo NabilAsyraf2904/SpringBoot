@@ -104,17 +104,16 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr  th:each="timesheet : ${timesheetList}">
-						<td th:text="${timesheet.project}"></td>
-						<td th:text="${timesheet.task}"></td>
-						<td th:text="${timesheet.userId == 1 ? 'Amir' : (timesheet.userId == 2 ? 'Farhan' : (timesheet.userId == 3 ? 'Kamil' : (timesheet.userId == 4 ? 'Shuhada' : (timesheet.userId == 5 ? 'Ain' : 'Unknown'))))}"></td>
-						<td th:text="${timesheet.dateFrom}"></td>
-						<td th:text="${timesheet.dateTo}"></td>
-						<td th:text="${timesheet.statusID == 0 ? 'Open' : (timesheet.statusID == 1 ? 'In Progress' : 'Closed')}"></td>
+					<tr  th:each="Inv : ${InvList}">
+						<td th:text="${Inv.project}"></td>
+						<td th:text="${Inv.task}"></td>
+						<td th:text="${Inv.userID == 1 ? 'Amir' : (Inv.userID == 2 ? 'Farhan' : (Inv.userID == 3 ? 'Kamil' : (Inv.userID == 4 ? 'Shuhada' : (Inv.userID == 5 ? 'Ain' : 'Unknown'))))}"></td>
+						<td th:text="${Inv.dateFrom}"></td>
+						<td th:text="${Inv.dateTo}"></td>
+						<td th:text="${Inv.statusID == 0 ? 'Open' : (Inv.statusID == 1 ? 'In Progress' : 'Closed')}"></td>
 						<td>
 							<div class="d-flex justify-content-between">
-											<a class="btn btn-lg btn-block btn-sm bx bxs-edit-alt" data-bs-toggle="modal"
-												th:attr="data-bs-target='#editModal', data-timesheet-id=${timesheet.timesheetID}">
+											<a class="btn btn-lg btn-block btn-sm bx bxs-edit-alt" data-bs-toggle="modal">
 											</a>
 											<a class="btn btn-lg btn-block btn-sm bx bxs-trash"></a>
 							</div>
