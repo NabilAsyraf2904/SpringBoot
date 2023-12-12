@@ -24,23 +24,17 @@ public class IndexController {
     }
 	
 	@GetMapping("/Index")
-	public String Index() {
+	public String Index(Model model) {
 		
+		model.addAttribute("user", new InventoryEntity());
+	    model.addAttribute("InvList", Inv.findAll());
 		return "Index";
 	}
 	
-	@GetMapping("")
-	public String getInvList(Model model) {
-	    
-		model.addAttribute("user", new InventoryEntity());
-	    model.addAttribute("InvList", Inv.findAll());
-	    return "Index"; 
-	}
-	
-	@PostMapping("")
+	@PostMapping("/users")
     public String createUser(@ModelAttribute("user") InventoryEntity user) {
         inv.saveUser(user);
-        return "Index"; // Redirect to the home page or another appropriate page
+        return "redirect:/Index"; // Redirect to the home page or another appropriate page
     }
 
 }
