@@ -97,8 +97,8 @@
 				<table class="table mt-2 align-middle border-top border-left border-right ">
 				<thead>
 					<tr>
-						<th style="width:9%">Project</th>
-						<th>Task</th>
+						<th style="width: 20%">Project</th>
+						<th >Task</thstyle="width:9%">
 						<th style="width: 20%">Assign to</th>
 						<th style="width:10%">From</th>
 						<th style="width:10%">To</th>
@@ -122,7 +122,66 @@
 													th:text="${Inv.timesheetID}" onclick="deleteItem('${Inv.timesheetID}')"></button>
 											</form>
 							</div>
+							<!-- EditModal -->
+							<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h1 class="modal-title fs-5" id="exampleModalLabel">Edit Inventory Details</h1>
+											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+							
+										<!-- EditForm -->
+										<div class="modal-body">
+											<form>
+												<div class="mb-3">
+													<label for="exampleFormControlInput1" class="form-label">Project
+													</label> <input name="Project" type="text" class="form-control" id="Project"
+														th:value="${Inv.project}">
+												</div>
+												<div class="mb-3">
+													<label for="exampleFormControlInput1" class="form-label">Task
+													</label> <input name="Task" type="text" class="form-control" id="Task">
+												</div>
+												<div class="mb-3">
+													<label for="exampleFormControlInput1" class="form-label">Assign To</label>
+													<select class="form-select" aria-label="Default select example">
+														<option selected>Select one</option>
+														<option th:each="user : ${User}" th:text="${user.userName}"></option>
+													</select>
+												</div>
+												<div class="row">
+													<div class="col-md-6 mb-3">
+														<label for="From" class="form-label">Date From</label>
+														<input name="From" type="date" class="form-control" id="From">
+													</div>
+													<div class="col-md-6 mb-3">
+														<label for="To" class="form-label">Date To</label>
+														<input name="To" type="date" class="form-control" id="To">
+													</div>
+												</div>
+												<div class="mb-3">
+													<label for="exampleFormControlInput1" class="form-label">Status
+													</label>
+													<select class="form-select" aria-label="Default select example">
+														<option selected>Select one</option>
+														<option th:each="status : ${Status}" th:text="${status.statusDesc}"></option>
+													</select>
+												</div>
+											</form>
+							
+										</div>
+							
+										<!-- EditFooter -->
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+											<button type="button" class="btn btn-primary">Save</button>
+										</div>
+									</div>
+								</div>
+							</div>
 						</td>
+						
 					</tr>
 
 				</tbody>
@@ -130,60 +189,7 @@
 			</div>
 			
 			
-			<!-- EditModal -->
-			<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h1 class="modal-title fs-5" id="exampleModalLabel">Edit Inventory Details</h1>
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-						</div>
-							
-						<!-- EditForm -->
-						<div class="modal-body">
-							<div class="mb-3" >
-								<label for="exampleFormControlInput1" class="form-label">Project
-								</label> <input name="Project" type="text" class="form-control"  id="Project">
-							</div>
-							<div class="mb-3">
-								<label for="exampleFormControlInput1" class="form-label">Task
-								</label> <input name="Task" type="text" class="form-control" id="Task">
-							</div>
-							<div class="mb-3">
-								<label for="exampleFormControlInput1" class="form-label">Assign To</label> 
-								<select class="form-select" aria-label="Default select example">
-									<option selected>Select one</option>
-									<option th:each="user : ${User}" th:text="${user.userName}"></option>
-								</select>
-							</div>
-							<div class="row">
-								<div class="col-md-6 mb-3">
-									<label for="From" class="form-label">Date From</label>
-									<input name="From" type="date" class="form-control" id="From">
-								</div>
-								<div class="col-md-6 mb-3">
-									<label for="To" class="form-label">Date To</label>
-									<input name="To" type="date" class="form-control" id="To">
-								</div>
-							</div>
-							<div class="mb-3">
-								<label for="exampleFormControlInput1" class="form-label">Status
-								</label> 
-								<select class="form-select" aria-label="Default select example">
-									<option selected>Select one</option>
-									<option th:each="status : ${Status}" th:text="${status.statusDesc}"></option>
-								</select>
-							</div>
-						</div>
-							
-						<!-- EditFooter -->
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary">Save</button>
-						</div>
-					</div>
-				</div>
-			</div>
+			
 
 		</section>
 	</div>

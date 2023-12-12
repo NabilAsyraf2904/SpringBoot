@@ -33,6 +33,22 @@ public class IndexController {
 		return "Index";
 	}
 	
+    @PostMapping("/edit/{timesheetID}")
+    public String edit(@PathVariable int timesheetID, @ModelAttribute InventoryEntity updatedTimesheet){
+    	
+    	InventoryEntity existingTimesheet = inv.getTimesheetById(timesheetID);
+        existingTimesheet.setProject(updatedTimesheet.getProject());
+        existingTimesheet.setTask(updatedTimesheet.getTask());
+        existingTimesheet.setStatusID(updatedTimesheet.getStatusID());
+        existingTimesheet.setUserID(updatedTimesheet.getUserID());
+        existingTimesheet.setDateFrom(updatedTimesheet.getDateFrom());
+        existingTimesheet.setDateTo(updatedTimesheet.getDateTo());
+
+        inv.updateTimesheet(existingTimesheet);
+
+        return "redirect:/Index";
+    }
+	
 	@PostMapping("/users")
     public String createUser(@ModelAttribute("user") InventoryEntity user) {
         inv.saveUser(user);
