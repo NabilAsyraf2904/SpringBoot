@@ -3,8 +3,8 @@ package com.Spring.Tutorial.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.ui.Model;
 
 import com.Spring.Tutorial.Entity.InventoryEntity;
@@ -32,14 +32,15 @@ public class IndexController {
 	@GetMapping("")
 	public String getInvList(Model model) {
 	    
+		model.addAttribute("user", new InventoryEntity());
 	    model.addAttribute("InvList", Inv.findAll());
 	    return "Index"; 
 	}
 	
-	@PostMapping("/users")
-    public String createUser(@RequestBody InventoryEntity user) {
+	@PostMapping("")
+    public String createUser(@ModelAttribute("user") InventoryEntity user) {
         inv.saveUser(user);
-        return "redirect:/Index"; // Redirect to the home page or another appropriate page
+        return "Index"; // Redirect to the home page or another appropriate page
     }
 
 }
