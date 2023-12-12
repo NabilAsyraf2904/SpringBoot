@@ -116,9 +116,11 @@
 						<td th:text="${Inv.statusID == 0 ? 'Open' : (Inv.statusID == 1 ? 'In Progress' : 'Closed')}"></td>
 						<td>
 							<div class="d-flex justify-content-between">
-											<a class="btn btn-lg btn-block btn-sm bx bxs-edit-alt" data-bs-toggle="modal">
-											</a>
-											<a class="btn btn-lg btn-block btn-sm bx bxs-trash"></a>
+											<a class="btn btn-lg btn-block btn-sm bx bxs-edit-alt" data-bs-toggle="modal" data-bs-target="#editModal"></a>
+											<form id="deleteForm" th:action="@{/delete/{timesheetID}(timesheetID=${Inv.timesheetID})}" method="post">
+												<button type="submit" class="btn btn-lg btn-block btn-sm bx bxs-trash"
+													th:text="${Inv.timesheetID}" onclick="deleteItem('${Inv.timesheetID}')"></button>
+											</form>
 							</div>
 						</td>
 					</tr>

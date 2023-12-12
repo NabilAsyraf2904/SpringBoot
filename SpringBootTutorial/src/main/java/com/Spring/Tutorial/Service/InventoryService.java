@@ -20,5 +20,9 @@ public class InventoryService {
     public void saveUser(InventoryEntity inv) {
         Inv.save(inv);
     }
+    
+    public void deleteById(int timesheetID) {
+        Inv.deleteById(timesheetID);
+    }
 
 }
