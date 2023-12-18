@@ -116,14 +116,14 @@
 						<td th:text="${Inv.statusID == 0 ? 'Open' : (Inv.statusID == 1 ? 'In Progress' : 'Closed')}"></td>
 						<td>
 							<div class="d-flex justify-content-between">
-											<a class="btn btn-lg btn-block btn-sm bx bxs-edit-alt" data-bs-toggle="modal" data-bs-target="#editModal"></a>
+											<button class="btn btn-lg btn-block btn-sm bx bxs-edit-alt" data-bs-toggle="modal" th:data-bs-target="'#editModal' + ${Inv.timesheetID}"></button>
 											<form id="deleteForm" th:action="@{/delete/{timesheetID}(timesheetID=${Inv.timesheetID})}" method="post">
 												<button type="submit" class="btn btn-lg btn-block btn-sm bx bxs-trash"
 													th:text="${Inv.timesheetID}" ></button>
 											</form>
 							</div>
 							<!-- EditModal -->
-							<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div th:each="Inv : ${InvList}" th:id="'editModal' + ${Inv.timesheetID}" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								<div class="modal-dialog">
 									<div class="modal-content">
 										<div class="modal-header">
@@ -133,31 +133,31 @@
 							
 										<!-- EditForm -->
 										<div class="modal-body">
-											<form>
-												<div class="mb-3">
+											<form th:action="@{/edit/{timesheetID}}" method="post">
+												<div class="mb-3">	
 													<label for="exampleFormControlInput1" class="form-label">Project
 													</label> <input name="Project" type="text" class="form-control" id="Project"
 														th:value="${Inv.project}">
 												</div>
 												<div class="mb-3">
 													<label for="exampleFormControlInput1" class="form-label">Task
-													</label> <input name="Task" type="text" class="form-control" id="Task">
+													</label> <input name="Task" type="text" class="form-control" id="Task" th:value="${Inv.task}">
 												</div>
 												<div class="mb-3">
 													<label for="exampleFormControlInput1" class="form-label">Assign To</label>
 													<select class="form-select" aria-label="Default select example">
-														<option selected>Select one</option>
+														<option selected >Select one</option>
 														<option th:each="user : ${User}" th:text="${user.userName}"></option>
 													</select>
 												</div>
 												<div class="row">
 													<div class="col-md-6 mb-3">
 														<label for="From" class="form-label">Date From</label>
-														<input name="From" type="date" class="form-control" id="From">
+														<input name="From" type="date" class="form-control" id="From" th:value="${Inv.dateFrom}">
 													</div>
 													<div class="col-md-6 mb-3">
 														<label for="To" class="form-label">Date To</label>
-														<input name="To" type="date" class="form-control" id="To">
+														<input name="To" type="date" class="form-control" id="To" th:value="${Inv.dateTo}">
 													</div>
 												</div>
 												<div class="mb-3">
